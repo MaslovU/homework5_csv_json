@@ -64,6 +64,11 @@ public class Main {
             listJson2.add(object);
         }
         writeString(listJson2, jsonFromXml);
+
+        List<Employee> listFromJson = JsonToList.jsonToList(jsonFromCsv);
+        for (Employee employee: listFromJson) {
+            System.out.println(employee);
+        }
     }
 
     private static void writeString(JSONArray listJson, String fileName) {
@@ -97,12 +102,14 @@ public class Main {
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(new File(xmlFileName));
         Node root = document.getDocumentElement();
-        System.out.println("Корневой элемент: " + root.getNodeName());
+//        System.out.println("Корневой элемент: " + root.getNodeName());
+//        System.out.println();
         NodeList nodeList = root.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node_ = nodeList.item(i);
             if (Node.ELEMENT_NODE == node_.getNodeType()) {
-                System.out.println("Текущий узел: " + node_.getNodeName());
+//                System.out.println("Текущий узел: " + node_.getNodeName());
+//                System.out.println();
                 Employee employee = new Employee();
                 NodeList employeeProps = node_.getChildNodes();
                 long searchId = Long.parseLong(employeeProps.item(1).getChildNodes().item(0).getTextContent());
